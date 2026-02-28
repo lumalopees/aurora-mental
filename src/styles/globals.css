@@ -103,3 +103,133 @@ button:focus-visible {
   box-shadow: var(--shadow-sm);
   padding: var(--space-6);
 }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.hero {
+  padding-block: var(--space-16) var(--space-12);
+  background: linear-gradient(180deg, #eef3ff 0%, #f6f8fc 100%);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-inner {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.eyebrow {
+  display: inline-block;
+  width: fit-content;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--primary-strong);
+  background: #e3eafe;
+  border: 1px solid #cfdaf8;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+  line-height: 1.08;
+  max-width: 16ch;
+}
+
+.hero-subtitle {
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+.hero-support {
+  font-weight: 500;
+  color: #223252;
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+}
+
+.step-card h3 {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.step-card p {
+  color: var(--text-muted);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: #e3eafe;
+  border: 1px solid #cfdaf8;
+  color: var(--primary-strong);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.testimonial p {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.testimonial footer {
+  margin-top: var(--space-3);
+  font-weight: 600;
+}
+
+.faq-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: var(--space-4) var(--space-5, 1.25rem);
+}
+
+.faq-item summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.faq-item p {
+  margin-top: var(--space-3);
+  color: var(--text-muted);
+}
+
+.contact-card {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.contact-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-2);
+  color: var(--text-muted);
+}
