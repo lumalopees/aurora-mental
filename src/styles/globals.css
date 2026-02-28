@@ -1,8 +1,36 @@
 :root {
   color-scheme: light;
+
+  --bg: #f6f8fc;
+  --surface: #ffffff;
+  --surface-soft: #eef3fb;
+  --text: #152238;
+  --text-muted: #4a5872;
+  --primary: #445fb8;
+  --primary-strong: #2f4da3;
+  --line: #d8e0f0;
+  --focus: #8da2f8;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.25rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --shadow-sm: 0 1px 3px rgba(19, 38, 82, 0.08);
+  --shadow-md: 0 8px 24px rgba(19, 38, 82, 0.1);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -10,11 +38,68 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: Inter, Arial, sans-serif;
-  background: #ffffff;
-  color: #101828;
 }
 
-main {
-  padding: 2rem;
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--primary-strong);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.container {
+  width: min(1120px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-12);
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.2rem);
+  line-height: 1.2;
+  margin-bottom: var(--space-3);
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  max-width: 65ch;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
 }
