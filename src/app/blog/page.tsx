@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import { Section } from "@/components/ui";
 import { blogPosts } from "@/content/siteContent";
 import Link from "next/link";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Blog",
+  description:
+    "Conteudos da Aurora Mental sobre saude emocional, terapia e autocuidado.",
+  path: "/blog"
+});
 
 export default function BlogPage() {
   return (

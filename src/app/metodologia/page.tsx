@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { Section } from "@/components/ui";
 import { howItWorks, methodologyPrinciples } from "@/content/siteContent";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Metodologia",
+  description:
+    "Veja como funciona nosso processo de triagem, encaminhamento e acompanhamento.",
+  path: "/metodologia"
+});
 
 export default function MetodologiaPage() {
   return (

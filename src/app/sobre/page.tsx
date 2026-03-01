@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { Card, Section } from "@/components/ui";
 import { teamMembers, teamSection } from "@/content/siteContent";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Sobre",
+  description:
+    "Conheca a equipe da Aurora Mental e nossa abordagem clinica humanizada.",
+  path: "/sobre"
+});
 
 export default function SobrePage() {
   return (

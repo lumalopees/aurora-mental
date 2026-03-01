@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   Contact,
   Faq,
@@ -7,6 +8,14 @@ import {
   Team,
   Testimonials
 } from "@/sections";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Home",
+  description:
+    "Aurora Mental: psicoterapia, avaliacao e acompanhamento com foco em acolhimento e clareza.",
+  path: "/"
+});
 
 export default function HomePage() {
   return (

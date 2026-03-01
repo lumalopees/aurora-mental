@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import { Section } from "@/components/ui";
 import { testimonials, ctas } from "@/content/siteContent";
 import { Button } from "@/components/ui";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Depoimentos",
+  description:
+    "Relatos de pacientes sobre o cuidado e a experiencia na Aurora Mental.",
+  path: "/depoimentos"
+});
 
 export default function DepoimentosPage() {
   return (

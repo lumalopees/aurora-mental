@@ -290,6 +290,29 @@ button:focus-visible {
   font-size: 0.95rem;
 }
 
+.footer-nav {
+  margin-top: var(--space-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.blog-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.blog-list .card p {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-3);
+  color: var(--text-muted);
+}
+
+.legal-text {
+  display: grid;
+  gap: var(--space-3);
+}
+
 @media (max-width: 760px) {
   .site-header-inner {
     padding-block: 0.75rem;

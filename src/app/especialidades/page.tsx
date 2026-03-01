@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import { Section, Card } from "@/components/ui";
 import { specialties, ctas } from "@/content/siteContent";
 import { Button } from "@/components/ui";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Especialidades",
+  description:
+    "Conheca os servicos da Aurora Mental e encontre o atendimento ideal para seu momento.",
+  path: "/especialidades"
+});
 
 export default function EspecialidadesPage() {
   return (
