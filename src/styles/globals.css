@@ -47,6 +47,10 @@ body {
   line-height: 1.6;
 }
 
+main {
+  min-height: 75vh;
+}
+
 h1,
 h2,
 h3,
@@ -73,6 +77,51 @@ button:focus-visible {
 .container {
   width: min(1120px, 100% - 2rem);
   margin-inline: auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(246, 248, 252, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header-inner {
+  min-height: 4.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.main-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.main-nav a {
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.35rem 0.55rem;
+  border-radius: var(--radius-sm);
+}
+
+.main-nav a:hover {
+  color: var(--text);
+  background: #e9eef9;
+  text-decoration: none;
 }
 
 .section {
@@ -232,4 +281,19 @@ button:focus-visible {
   display: grid;
   gap: var(--space-2);
   color: var(--text-muted);
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-block: var(--space-6);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 760px) {
+  .site-header-inner {
+    padding-block: 0.75rem;
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }

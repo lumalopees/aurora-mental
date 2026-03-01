@@ -9,6 +9,16 @@ export const ctas = {
   }
 } as const;
 
+export const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Especialidades", href: "/especialidades" },
+  { label: "Sobre", href: "/sobre" },
+  { label: "Metodologia", href: "/metodologia" },
+  { label: "Depoimentos", href: "/depoimentos" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contato", href: "/contato" }
+] as const;
+
 export const heroContent = {
   title: "Aurora Mental",
   subtitle:
@@ -62,6 +72,24 @@ export const teamSection = {
     "Nossa equipe atua com base em ciencia, escuta qualificada e cuidado humanizado. Cada plano terapeutico e construido de forma individual, respeitando sua historia e objetivos."
 } as const;
 
+export const teamMembers = [
+  {
+    name: "Dra. Helena Costa",
+    role: "Psicologa clinica",
+    focus: "Ansiedade, depressao e regulacao emocional"
+  },
+  {
+    name: "Dra. Sofia Almeida",
+    role: "Neuropsicologa",
+    focus: "Avaliacao cognitiva e suporte diagnostico"
+  },
+  {
+    name: "Dr. Rafael Nunes",
+    role: "Psicologo terapeuta",
+    focus: "Relacionamentos, autoestima e transicoes de vida"
+  }
+] as const;
+
 export const testimonials = [
   {
     name: "Mariana R.",
@@ -101,3 +129,39 @@ export const contactSection = {
     "Entre em contato para tirar duvidas sobre atendimento, valores e disponibilidade de horarios.",
   details: ["WhatsApp: (00) 00000-0000", "Email: contato@auroramental.com.br"]
 } as const;
+
+export const methodologyPrinciples = [
+  {
+    title: "Escuta e triagem",
+    description:
+      "Comecamos com uma leitura cuidadosa da demanda para compreender historico, contexto e objetivo terapeutico."
+  },
+  {
+    title: "Plano individual",
+    description:
+      "Definimos estrategia clinica personalizada, com metas realistas e alinhadas ao momento da pessoa."
+  },
+  {
+    title: "Revisao continua",
+    description:
+      "Acompanhamos evolucao e ajustamos o plano conforme a resposta ao tratamento."
+  }
+] as const;
+
+export const blogPosts = [
+  {
+    title: "Como reconhecer sinais de ansiedade no dia a dia",
+    excerpt:
+      "Entenda sintomas frequentes, gatilhos comuns e quando buscar apoio profissional."
+  },
+  {
+    title: "Primeira sessao de terapia: o que esperar",
+    excerpt:
+      "Um guia simples para reduzir insegurancas e chegar na primeira consulta com mais tranquilidade."
+  },
+  {
+    title: "Rotina emocional: pequenas praticas de autocuidado",
+    excerpt:
+      "Habitos práticos para melhorar relacao com pensamentos, energia e bem-estar."
+  }
+] as const;
