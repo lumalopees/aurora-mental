@@ -1,14 +1,18 @@
 import { Section } from "@/components/ui";
-import { faqItems } from "@/content/siteContent";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
-export function Faq() {
+export async function Faq() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <Section
-      title="FAQ"
-      subtitle="Perguntas frequentes para facilitar sua decisao de iniciar o atendimento."
+      title={content.faqSection.title}
+      subtitle={content.faqSection.subtitle}
     >
       <div className="faq-list">
-        {faqItems.map((item) => (
+        {content.faqItems.map((item) => (
           <details key={item.question} className="faq-item">
             <summary>{item.question}</summary>
             <p>{item.answer}</p>

@@ -1,13 +1,25 @@
 import Link from "next/link";
+import type { SiteLocale } from "@/lib/locale";
+import { getSiteContent } from "@/content/siteContent";
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  locale: SiteLocale;
+};
+
+export function SiteFooter({ locale }: SiteFooterProps) {
+  const content = getSiteContent(locale);
+
   return (
     <footer className="site-footer">
       <div className="container">
-        <p>© {new Date().getFullYear()} Aurora Mental. Todos os direitos reservados.</p>
-        <nav aria-label="Links legais" className="footer-nav">
-          <Link href="/politica-de-privacidade">Politica de Privacidade</Link>
-          <Link href="/termos">Termos de Uso</Link>
+        <p>
+          © {new Date().getFullYear()} {content.brand}. {content.footer.rights}
+        </p>
+        <nav aria-label={content.footer.legalAria} className="footer-nav">
+          <Link href="/politica-de-privacidade">
+            {content.footer.privacyLabel}
+          </Link>
+          <Link href="/termos">{content.footer.termsLabel}</Link>
         </nav>
       </div>
     </footer>

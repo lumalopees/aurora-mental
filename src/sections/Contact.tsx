@@ -1,16 +1,26 @@
 import { Button, Section } from "@/components/ui";
-import { contactSection, ctas } from "@/content/siteContent";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
-export function Contact() {
+export async function Contact() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
-    <Section title={contactSection.title} subtitle={contactSection.description}>
+    <Section
+      title={content.contactSection.title}
+      subtitle={content.contactSection.description}
+    >
       <div className="contact-card card">
         <ul>
-          {contactSection.details.map((item) => (
+          {content.contactSection.details.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <Button label={ctas.whatsapp.label} href={ctas.whatsapp.href} />
+        <Button
+          label={content.ctas.whatsapp.label}
+          href={content.ctas.whatsapp.href}
+        />
       </div>
     </Section>
   );

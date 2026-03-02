@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui";
-import { testimonials, ctas } from "@/content/siteContent";
 import { Button } from "@/components/ui";
 import { buildPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Depoimentos",
@@ -11,15 +12,18 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/depoimentos"
 });
 
-export default function DepoimentosPage() {
+export default async function DepoimentosPage() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <main>
       <Section
-        title="Depoimentos"
-        subtitle="Experiencias reais de quem passou pelo cuidado da Aurora Mental."
+        title={content.testimonialsSection.title}
+        subtitle={content.testimonialsSection.subtitle}
       >
         <div className="grid-3">
-          {testimonials.map((item) => (
+          {content.testimonials.map((item) => (
             <blockquote key={item.name} className="card testimonial">
               <p>{item.text}</p>
               <footer>{item.name}</footer>
@@ -29,10 +33,13 @@ export default function DepoimentosPage() {
       </Section>
 
       <Section
-        title="Quer iniciar sua jornada?"
-        subtitle="Converse com nossa equipe e agende sua primeira conversa."
+        title={content.testimonialsPage.ctaTitle}
+        subtitle={content.testimonialsPage.ctaSubtitle}
       >
-        <Button label={ctas.whatsapp.label} href={ctas.whatsapp.href} />
+        <Button
+          label={content.ctas.whatsapp.label}
+          href={content.ctas.whatsapp.href}
+        />
       </Section>
     </main>
   );

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui";
-import { blogPosts } from "@/content/siteContent";
 import Link from "next/link";
 import { buildPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Blog",
@@ -11,20 +12,23 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/blog"
 });
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <main>
-      <Section
-        title="Blog"
-        subtitle="Conteudo inicial estatico. Depois vamos conectar com CMS para publicacao dinamica."
-      >
+      <Section title={content.blogPage.title} subtitle={content.blogPage.subtitle}>
         <div className="blog-list">
-          {blogPosts.map((post) => (
+          {content.blogPosts.map((post) => (
             <article key={post.title} className="card">
               <h3>{post.title}</h3>
               <p>{post.excerpt}</p>
-              <Link href="/contato" aria-label={`Ler artigo: ${post.title}`}>
-                Ler artigo
+              <Link
+                href="/contato"
+                aria-label={`${content.blogPage.readArticle}: ${post.title}`}
+              >
+                {content.blogPage.readArticle}
               </Link>
             </article>
           ))}

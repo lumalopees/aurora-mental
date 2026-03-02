@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui";
 import { buildPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Politica de Privacidade",
@@ -9,26 +11,20 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/politica-de-privacidade"
 });
 
-export default function PoliticaDePrivacidadePage() {
+export default async function PoliticaDePrivacidadePage() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <main>
       <Section
-        title="Politica de Privacidade"
-        subtitle="Este texto inicial deve ser revisado por responsavel juridico antes da publicacao oficial."
+        title={content.privacyPage.title}
+        subtitle={content.privacyPage.subtitle}
       >
         <div className="card legal-text">
-          <p>
-            Coletamos apenas os dados necessarios para responder contatos
-            enviados por formularios, WhatsApp e canais oficiais da clinica.
-          </p>
-          <p>
-            As informacoes sao tratadas com confidencialidade e usadas
-            exclusivamente para comunicacao e atendimento.
-          </p>
-          <p>
-            Voce pode solicitar atualizacao ou exclusao de dados pelos canais de
-            contato informados no site.
-          </p>
+          {content.privacyPage.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </Section>
     </main>

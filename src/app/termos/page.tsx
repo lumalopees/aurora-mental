@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui";
 import { buildPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Termos de Uso",
@@ -8,26 +10,17 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/termos"
 });
 
-export default function TermosPage() {
+export default async function TermosPage() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <main>
-      <Section
-        title="Termos de Uso"
-        subtitle="Texto inicial para referencia. Recomenda-se validacao juridica antes de publicar."
-      >
+      <Section title={content.termsPage.title} subtitle={content.termsPage.subtitle}>
         <div className="card legal-text">
-          <p>
-            O conteudo deste site tem finalidade informativa e nao substitui
-            avaliacao profissional individual.
-          </p>
-          <p>
-            O uso do site implica concordancia com estes termos e com a politica
-            de privacidade vigente.
-          </p>
-          <p>
-            A Aurora Mental pode atualizar informacoes e condicoes de uso para
-            manter o site seguro, claro e atualizado.
-          </p>
+          {content.termsPage.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </Section>
     </main>

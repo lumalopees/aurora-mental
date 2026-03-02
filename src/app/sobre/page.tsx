@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Card, Section } from "@/components/ui";
-import { teamMembers, teamSection } from "@/content/siteContent";
 import { buildPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Sobre",
@@ -10,25 +11,27 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/sobre"
 });
 
-export default function SobrePage() {
+export default async function SobrePage() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <main>
-      <Section title="Sobre a Aurora Mental" subtitle={teamSection.description}>
+      <Section
+        title={content.aboutPage.title}
+        subtitle={content.teamSection.description}
+      >
         <div className="card">
-          <p>
-            Nossa clinica nasceu para oferecer cuidado psicologico acolhedor,
-            tecnico e acessivel. Acreditamos em relacoes terapeuticas baseadas
-            em confianca, clareza e acompanhamento continuo.
-          </p>
+          <p>{content.aboutPage.intro}</p>
         </div>
       </Section>
 
       <Section
-        title="Equipe"
-        subtitle="Profissionais com experiencia clinica e abordagem centrada na pessoa."
+        title={content.aboutPage.teamTitle}
+        subtitle={content.aboutPage.teamSubtitle}
       >
         <div className="grid-3">
-          {teamMembers.map((member) => (
+          {content.teamMembers.map((member) => (
             <Card
               key={member.name}
               title={member.name}

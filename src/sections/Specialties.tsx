@@ -1,14 +1,18 @@
 import { Card, Section } from "@/components/ui";
-import { specialties } from "@/content/siteContent";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
-export function Specialties() {
+export async function Specialties() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <Section
-      title="Especialidades"
-      subtitle="Atendimento construido para diferentes necessidades com plano terapeutico individual."
+      title={content.specialtiesSection.title}
+      subtitle={content.specialtiesSection.subtitle}
     >
       <div className="grid-3">
-        {specialties.map((item) => (
+        {content.specialties.map((item) => (
           <Card
             key={item.title}
             title={item.title}

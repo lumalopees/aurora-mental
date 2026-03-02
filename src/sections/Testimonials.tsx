@@ -1,14 +1,18 @@
 import { Section } from "@/components/ui";
-import { testimonials } from "@/content/siteContent";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
-export function Testimonials() {
+export async function Testimonials() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <Section
-      title="Depoimentos"
-      subtitle="Relatos de pacientes sobre acolhimento, clareza do processo e evolucao no tratamento."
+      title={content.testimonialsSection.title}
+      subtitle={content.testimonialsSection.subtitle}
     >
       <div className="grid-3">
-        {testimonials.map((item) => (
+        {content.testimonials.map((item) => (
           <blockquote key={item.name} className="card testimonial">
             <p>{item.text}</p>
             <footer>{item.name}</footer>

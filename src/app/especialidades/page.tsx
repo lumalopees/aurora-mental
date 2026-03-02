@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Section, Card } from "@/components/ui";
-import { specialties, ctas } from "@/content/siteContent";
 import { Button } from "@/components/ui";
 import { buildPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Especialidades",
@@ -11,15 +12,18 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/especialidades"
 });
 
-export default function EspecialidadesPage() {
+export default async function EspecialidadesPage() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <main>
       <Section
-        title="Especialidades"
-        subtitle="Conheca os principais servicos da Aurora Mental e escolha o caminho mais adequado para voce."
+        title={content.specialtiesSection.title}
+        subtitle={content.specialtiesSection.subtitle}
       >
         <div className="grid-3">
-          {specialties.map((item) => (
+          {content.specialties.map((item) => (
             <Card
               key={item.title}
               title={item.title}
@@ -30,11 +34,14 @@ export default function EspecialidadesPage() {
       </Section>
 
       <Section
-        title="Precisa de ajuda para decidir?"
-        subtitle="Nossa equipe pode orientar qual especialidade faz mais sentido para o seu momento."
+        title={content.specialtiesPage.ctaTitle}
+        subtitle={content.specialtiesPage.ctaSubtitle}
       >
         <div className="cta-row">
-          <Button label={ctas.whatsapp.label} href={ctas.whatsapp.href} />
+          <Button
+            label={content.ctas.whatsapp.label}
+            href={content.ctas.whatsapp.href}
+          />
         </div>
       </Section>
     </main>

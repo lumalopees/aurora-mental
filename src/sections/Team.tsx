@@ -1,16 +1,19 @@
 import { Section } from "@/components/ui";
-import { teamSection } from "@/content/siteContent";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
-export function Team() {
+export async function Team() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
-    <Section title={teamSection.title} subtitle={teamSection.description}>
+    <Section
+      title={content.teamSection.title}
+      subtitle={content.teamSection.description}
+    >
       <div className="card">
-        <h3>Abordagem humanizada e tecnica</h3>
-        <p>
-          Trabalhamos com escuta ativa, objetivos terapeuticos definidos em
-          conjunto e revisao frequente de progresso para garantir continuidade
-          no cuidado.
-        </p>
+        <h3>{content.teamSection.cardTitle}</h3>
+        <p>{content.teamSection.cardText}</p>
       </div>
     </Section>
   );

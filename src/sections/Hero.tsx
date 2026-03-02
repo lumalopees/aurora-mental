@@ -1,19 +1,26 @@
 import { Button } from "@/components/ui";
-import { ctas, heroContent } from "@/content/siteContent";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
-export function Hero() {
+export async function Hero() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <section className="hero">
       <div className="container hero-inner">
-        <p className="eyebrow">Clinica de Psicologia</p>
-        <h1 className="hero-title">{heroContent.title}</h1>
-        <p className="hero-subtitle">{heroContent.subtitle}</p>
-        <p className="hero-support">{heroContent.support}</p>
+        <p className="eyebrow">{content.hero.eyebrow}</p>
+        <h1 className="hero-title">{content.hero.title}</h1>
+        <p className="hero-subtitle">{content.hero.subtitle}</p>
+        <p className="hero-support">{content.hero.support}</p>
         <div className="cta-row">
-          <Button label={ctas.whatsapp.label} href={ctas.whatsapp.href} />
           <Button
-            label={ctas.equipe.label}
-            href={ctas.equipe.href}
+            label={content.ctas.whatsapp.label}
+            href={content.ctas.whatsapp.href}
+          />
+          <Button
+            label={content.ctas.team.label}
+            href={content.ctas.team.href}
             variant="secondary"
           />
         </div>

@@ -1,14 +1,18 @@
 import { Section } from "@/components/ui";
-import { howItWorks } from "@/content/siteContent";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
-export function HowItWorks() {
+export async function HowItWorks() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <Section
-      title="Como funciona"
-      subtitle="Triagem, encaminhamento e acompanhamento para tornar seu processo claro desde o inicio."
+      title={content.howItWorksSection.title}
+      subtitle={content.howItWorksSection.subtitle}
     >
       <ol className="steps">
-        {howItWorks.map((item) => (
+        {content.howItWorks.map((item) => (
           <li key={item.step} className="step-card">
             <span className="step-number">{item.step}</span>
             <h3>{item.title}</h3>

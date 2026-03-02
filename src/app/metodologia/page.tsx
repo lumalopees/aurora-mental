@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui";
-import { howItWorks, methodologyPrinciples } from "@/content/siteContent";
 import { buildPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/siteContent";
+import { getRequestLocale } from "@/lib/preferences";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Metodologia",
@@ -10,15 +11,18 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/metodologia"
 });
 
-export default function MetodologiaPage() {
+export default async function MetodologiaPage() {
+  const locale = await getRequestLocale();
+  const content = getSiteContent(locale);
+
   return (
     <main>
       <Section
-        title="Metodologia"
-        subtitle="Nosso processo combina escuta qualificada, tecnica e revisao constante da evolucao."
+        title={content.methodologyPage.title}
+        subtitle={content.methodologyPage.subtitle}
       >
         <ol className="steps">
-          {howItWorks.map((item) => (
+          {content.howItWorks.map((item) => (
             <li key={item.step} className="step-card">
               <span className="step-number">{item.step}</span>
               <h3>{item.title}</h3>
@@ -29,11 +33,11 @@ export default function MetodologiaPage() {
       </Section>
 
       <Section
-        title="Principios de atuacao"
-        subtitle="Como colocamos qualidade clinica e cuidado humano no centro do atendimento."
+        title={content.methodologyPage.principlesTitle}
+        subtitle={content.methodologyPage.principlesSubtitle}
       >
         <div className="grid-3">
-          {methodologyPrinciples.map((item) => (
+          {content.methodologyPrinciples.map((item) => (
             <article key={item.title} className="card">
               <h3>{item.title}</h3>
               <p>{item.description}</p>
